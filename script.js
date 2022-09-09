@@ -77,19 +77,48 @@ txtHover.addEventListener("mouseout", function (e) {
 
 // Exercice 6
 
+let chronos;
 let chronoP = document.getElementById("chronoP");
 let btnStart = document.getElementById("btnStart");
 let btnPause = document.getElementById("btnPause");
 let btnStop = document.getElementById("btnStop");
 let [mins, secs, msecs] = [0, 0, 0];
 
-btnStart.addEventListener("click", startChrono, false);
+btnPause.disabled = true;
+btnStop.disabled = true;
 
 function startChrono() {
-  btnStart.style.visibility = "hidden";
-  btnPause.style.visibility = "visible";
-  btnStop.style.visibility = "visible";
-  setInterval(timer, 10);
+  if (!chronos) {
+    chronos = setInterval(timer, 10);
+    btnStart.disabled = true;
+    btnPause.disabled = false;
+    btnStop.disabled = false;
+    chronoP.style.color = "green";
+    btnStart.value = "Start";
+  }
+}
+
+function stopChrono() {
+  clearInterval(chronos);
+  chronos = null;
+  chronoP.innerHTML = "00:00:00";
+  mins = 0;
+  secs = 0;
+  msecs = 0;
+  btnStart.disabled = false;
+  btnPause.disabled = true;
+  btnStop.disabled = true;
+  chronoP.style.color = "black";
+  btnStart.value = "Start";
+}
+
+function pauseChrono() {
+  clearInterval(chronos);
+  chronos = null;
+  btnStart.disabled = false;
+  btnPause.disabled = true;
+  chronoP.style.color = "blue";
+  btnStart.value = "Reprendre";
 }
 
 function timer() {
@@ -114,3 +143,66 @@ function timer() {
 
   chronoP.innerHTML = `${m}:${s}:${ms}`;
 }
+
+btnStart.addEventListener("click", startChrono, false);
+btnStop.addEventListener("click", stopChrono, false);
+btnPause.addEventListener("click", pauseChrono, false);
+
+// Exercice 7
+
+let btnControl = document.getElementById("btnControl");
+let saisie = document.getElementById("saisie");
+
+btnControl.addEventListener(
+  "click",
+  function (e) {
+    if (
+      saisie.value.match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      )
+    ) {
+      alert("Vous avez saisi : " + saisie.value);
+    } else {
+      alert("Votre mail n'est pas valide");
+    }
+  },
+  false
+);
+
+// Exercie 8
+// à activer uniquement pour l'exercice
+
+// let importTxt = document.getElementById("importTxt");
+// let importNb = document.getElementById("importNb");
+// let uri = window.location;
+
+// importNb.innerHTML = decodeURIComponent(uri).match(/cle1=(.*)&/)[1];
+// importTxt.innerHTML = decodeURIComponent(uri).match(/cle2=(.*)/)[1];
+
+// Exercice 9
+
+let btnCode = document.getElementById("btnCode");
+let btnName = document.getElementById("btnName");
+let btnVersion = document.getElementById("btnVersion");
+let btnUa = document.getElementById("btnUa");
+
+let codeName = document.getElementById("codeName");
+let appName = document.getElementById("appName");
+let appVersion = document.getElementById("appVersion");
+let ua = document.getElementById("ua");
+
+btnCode.addEventListener("click", () => {
+  codeName.value = navigator.appCodeName;
+});
+
+btnName.addEventListener("click", () => {
+  appName.value = navigator.appName;
+});
+
+btnVersion.addEventListener("click", () => {
+  appVersion.value = navigator.appVersion;
+});
+
+btnUa.addEventListener("click", () => {
+  ua.value = navigator.userAgent;
+});
