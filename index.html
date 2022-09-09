@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mon 1er Script</title>
+  </head>
+
+  <body>
+    <!-- un embryon de formulaire avec déjà du code JS événementiel -->
+    <h2></h2>
+    <input type="button" value="Clic moi !" id="button" />
+    <p>Rien a ajouter !</p>
+    <form>
+      <div>
+        <input
+          type="radio"
+          id="radio1"
+          value="semaine"
+          title="radio1"
+          name="choix"
+          class="radios"
+        /><label for="semaine">Semaine</label>
+        <input
+          type="radio"
+          id="radio2"
+          value="we"
+          title="radio2"
+          name="choix"
+          class="radios"
+        /><label for="we">Week-end</label>
+      </div>
+      <input type="button" id="button1" title="button" value="Choix" />
+      <input type="text" id="text1" title="text" />
+    </form>
+
+    <p>---------------------------</p>
+
+    <h2>Post-It</h2>
+    <input type="button" value="Cache" title="button" id="btnCache" />
+    <input type="button" value="Affiche" title="button" id="btnAffiche" />
+    <p id="survol">Merci de bien vouloir me survoler</p>
+    <div
+      id="postit"
+      style="background-color: yellow; width: 100px; visibility: hidden"
+    >
+      <p>Vous avez cliqué sur le bouton affiche</p>
+    </div>
+
+    <p>---------------------------</p>
+
+    <h2>Mon chrono</h2>
+
+    <input type="button" value="Start" title="Start button" id="btnStart" />
+    <input
+      type="button"
+      value="Pause"
+      title="Pause button"
+      id="btnPause"
+      style="visibility: hidden"
+    />
+    <input
+      type="button"
+      value="Stop"
+      title="Stop button"
+      id="btnStop"
+      style="visibility: hidden"
+    />
+
+    <p id="chronoP">00:00:00</p>
+
+    <script src="script.js"></script>
+  </body>
+</html>
